@@ -1,0 +1,34 @@
+schemaVersion: 2.1.0
+metadata:
+  name: datascience-workspace
+components:
+  - name: datascience-container
+    container:
+      image: quay.io/devfile/universal-developer-image:ubi8-latest
+      volumeMounts:
+        - name: venv
+          path: /home/user/.venv
+      memoryLimit: 8Gi
+      mountSources: true
+
+  - name: venv
+    volume:
+      size: 1G
+
+commands:
+  - id: run-python-application
+    exec:
+      label: "Run Python (app.py) application"
+      component: datascience-container
+      workingDir: ${PROJECT_SOURCE}
+      commandLine: "python3 app.py"
+      group:
+        kind: run
+  - id: run-streamlit-application
+    exec:
+      label: "Run Streamlit (streamlit.py) application"
+      component: datascience-container
+      workingDir: ${PROJECT_SOURCE}
+      commandLine: "streamlit streamlit.py"
+      group:
+        kind: run
