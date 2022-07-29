@@ -1,7 +1,7 @@
 kind: BuildConfig
 apiVersion: build.openshift.io/v1
 metadata:
-  name: universal-developer-image-datascience
+  name: rapidsai-dev-datascience
 spec:
   triggers:
     - type: ConfigChange
@@ -18,19 +18,19 @@ spec:
   output:
     to:
       kind: ImageStreamTag
-      name: 'devfile-universal-developer-image:universal-developer-image-ubi8-latest-datascience'
+      name: 'rapidsai-dev-datascience:22.06-cuda11.5-devel-ubuntu20.04-py3.9-custom'
 ---
 kind: ImageStream
 apiVersion: image.openshift.io/v1
 metadata:
-  name: devfile-universal-developer-image
+  name: rapidsai-dev-datascience
 spec:
   lookupPolicy:
     local: false
   tags:
-    - name: devfile-universal-developer-image
+    - name: rapidsai-dev-datascience
       from:
         kind: DockerImage
-        name: 'quay.io/devfile/universal-developer-image:ubi8-latest'
+        name: 'docker.io/rapidsai/rapidsai-dev:22.06-cuda11.5-devel-ubuntu20.04-py3.9'
       referencePolicy:
         type: Source
