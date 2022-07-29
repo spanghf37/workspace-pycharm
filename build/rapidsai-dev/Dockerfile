@@ -1,4 +1,4 @@
-FROM rapidsai/rapidsai-dev:22.06-cuda11.5-devel-ubuntu20.04-py3.9
+FROM docker.io/rapidsai/rapidsai-dev:22.06-cuda11.5-devel-ubuntu20.04-py3.9
 
 COPY ../../requirements.txt /
 
