@@ -13,7 +13,8 @@ components:
       endpoints:
         - name: streamlit-8501
           targetPort: 8501
-          
+        - name: tensorboard-6006
+          targetPort: 6006
   - name: venv
     volume:
       size: 1G
