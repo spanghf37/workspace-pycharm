@@ -31,7 +31,9 @@ RUN /checode-linux-libc/bin/che-code --extensions-dir /checode-extensions \
       --install-extension redhat.vscode-tekton-pipelines \
       --install-extension redhat.vscode-xml
 
-RUN curl -LO https://raw.githubusercontent.com/spanghf37/datascience-workspace/main/build/che-code/entrypoint-init-container.sh && mv entrypoint-init-container.sh /
+#RUN curl -LO https://raw.githubusercontent.com/spanghf37/datascience-workspace/main/build/che-code/entrypoint-init-container.sh && mv entrypoint-init-container.sh /
+
+COPY build/che-code/entrypoint-init-container.sh /
 
 RUN chmod +x /entrypoint-init-container.sh
 
