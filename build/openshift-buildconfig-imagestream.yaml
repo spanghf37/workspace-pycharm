@@ -1,0 +1,36 @@
+kind: BuildConfig
+apiVersion: build.openshift.io/v1
+metadata:
+  name: che-code-insiders-custom
+spec:
+  triggers:
+    - type: ConfigChange
+  runPolicy: Serial
+  source:
+    type: Git
+    git:
+      uri: 'https://github.com/spanghf37/datascience-workspace.git'
+      ref: main
+  strategy:
+    type: Docker
+    dockerStrategy:
+      dockerfilePath: Dockerfile.che-code
+  output:
+    to:
+      kind: ImageStreamTag
+      name: 'che-incubator-che-code:che-code-insiders-custom'
+---
+kind: ImageStream
+apiVersion: image.openshift.io/v1
+metadata:
+  name: che-incubator-che-code
+spec:
+  lookupPolicy:
+    local: false
+  tags:
+    - name: che-code-insiders
+      from:
+        kind: DockerImage
+        name: 'quay.io/che-incubator/che-code:insiders'
+      referencePolicy:
+        type: Source
