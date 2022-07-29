@@ -1,0 +1,36 @@
+kind: BuildConfig
+apiVersion: build.openshift.io/v1
+metadata:
+  name: universal-developer-image-datascience
+spec:
+  triggers:
+    - type: ConfigChange
+  runPolicy: Serial
+  source:
+    type: Git
+    git:
+      uri: 'https://github.com/spanghf37/datascience-workspace.git'
+      ref: main
+  strategy:
+    type: Docker
+    dockerStrategy:
+      dockerfilePath: build/universal-developer-image-datascience/Dockerfile
+  output:
+    to:
+      kind: ImageStreamTag
+      name: 'devfile-universal-developer-image:universal-developer-image-ubi8-latest-datascience'
+---
+kind: ImageStream
+apiVersion: image.openshift.io/v1
+metadata:
+  name: devfile-universal-developer-image
+spec:
+  lookupPolicy:
+    local: false
+  tags:
+    - name: devfile-universal-developer-image
+      from:
+        kind: DockerImage
+        name: 'quay.io/devfile/universal-developer-image:ubi8-latest'
+      referencePolicy:
+        type: Source
