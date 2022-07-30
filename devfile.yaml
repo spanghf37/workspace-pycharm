@@ -1,8 +1,8 @@
 schemaVersion: 2.1.0
 metadata:
-  name: datascience-workspace
+  name: workspace-pycharm
 components:
-  - name: datascience-container
+  - name: runtime
     container:
 #      image: docker.io/rapidsai/rapidsai-dev:22.06-cuda11.5-devel-ubuntu20.04-py3.9
       image: quay.io/devfile/universal-developer-image:ubi8-latest
@@ -24,7 +24,7 @@ commands:
   - id: run-python-application
     exec:
       label: "Run Python (app.py) application"
-      component: datascience-container
+      component: runtime
       workingDir: ${PROJECT_SOURCE}
       commandLine: "python3 app.py"
       group:
@@ -32,7 +32,7 @@ commands:
   - id: run-streamlit-application
     exec:
       label: "Run Streamlit (streamlit.py) application"
-      component: datascience-container
+      component: runtime
       workingDir: ${PROJECT_SOURCE}
       commandLine: "streamlit streamlit.py"
       group:
