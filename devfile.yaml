@@ -34,6 +34,6 @@ commands:
       label: "Run Streamlit (streamlit.py) application"
       component: runtime
       workingDir: ${PROJECT_SOURCE}
-      commandLine: "streamlit streamlit.py"
+      commandLine: "streamlit run streamlit.py"
       group:
         kind: run
