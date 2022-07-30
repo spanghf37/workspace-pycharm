@@ -4,7 +4,8 @@ metadata:
 components:
   - name: datascience-container
     container:
-      image: quay.io/devfile/universal-developer-image:ubi8-latest
+      image: docker.io/rapidsai/rapidsai-dev:22.06-cuda11.5-devel-ubuntu20.04-py3.9
+#      image: quay.io/devfile/universal-developer-image:ubi8-latest
       volumeMounts:
         - name: venv
           path: /home/user/.venv
