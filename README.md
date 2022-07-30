@@ -1,1 +1,1 @@
-# datascience-workspace
+# workspace-pycharm
